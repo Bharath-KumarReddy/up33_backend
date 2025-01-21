@@ -1,13 +1,13 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-
+const cors = require('cors');
 
 const app = express();
 const port = 3001;
 
 app.use(cookieParser());
 app.use(express.json());
-
+app.use(cors());
 
 app.get('/set-cookie', (req, res) => {
   res.cookie('user', 'John Doe', { httpOnly: true });
