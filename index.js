@@ -15,12 +15,13 @@ app.use(cors({
 
 app.get('/set-cookie', (req, res) => {
   res.cookie('user', 'John Doe', { httpOnly: true });
+  localStorage.setItem('user', 'John Doe');
   res.status(200).json({ message: 'Cookie has been set' });
 });
 
 app.get('/get-cookie', (req, res) => {
 
-  const userCookie = req.cookies.user || 'No cookie found';
+  const userCookie = localStorage.getItem('user');
   res.status(200).json({ cookie: userCookie });
 });
 
