@@ -6,7 +6,9 @@ const app = express();
 const port = 3001;
 
 app.use(cookieParser());
+
 app.use(express.json());
+
 app.use(cors({
   origin: ['https://upp33-front.vercel.app'],
   credentials: true,
@@ -14,14 +16,16 @@ app.use(cors({
 
 
 app.get('/set-cookie', (req, res) => {
-  res.cookie('user', 'John Doe', { httpOnly: true });
-  localStorage.setItem('user', 'John Doe');
+  res.cookie('user', 'John Doe', {
+    httpOnly: true,   
+    secure: true,     
+    sameSite: 'None',  
+  });
   res.status(200).json({ message: 'Cookie has been set' });
 });
 
 app.get('/get-cookie', (req, res) => {
-
-  const userCookie = localStorage.getItem('user');
+  const userCookie = req.cookies.user || 'No cookie found';
   res.status(200).json({ cookie: userCookie });
 });
 
