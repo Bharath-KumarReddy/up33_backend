@@ -7,7 +7,11 @@ const port = 3001;
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+    {
+        origin: 'https://upp33-front.vercel.app'
+    }
+));
 
 app.get('/set-cookie', (req, res) => {
   res.cookie('user', 'John Doe', { httpOnly: true });
