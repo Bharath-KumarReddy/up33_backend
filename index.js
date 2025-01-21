@@ -9,7 +9,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors(
     {
-        origin: 'https://upp33-front.vercel.app'
+        origin: 'https://upp33-front.vercel.app',
+        credentials: true,
     }
 ));
 
